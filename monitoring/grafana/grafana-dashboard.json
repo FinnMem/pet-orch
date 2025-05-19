@@ -1,0 +1,46 @@
+{
+  "id": null,
+  "title": "FastAPI Job Metrics",
+  "tags": ["fastapi", "petorch", "devops"],
+  "timezone": "browser",
+  "schemaVersion": 36,
+  "version": 1,
+  "refresh": "10s",
+  "panels": [
+    {
+      "type": "stat",
+      "title": "📤 Jobs Dispatched",
+      "datasource": "Prometheus",
+      "targets": [{ "expr": "petorch_jobs_dispatched_total" }],
+      "gridPos": { "x": 0, "y": 0, "w": 6, "h": 4 }
+    },
+    {
+      "type": "stat",
+      "title": "✅ Jobs Success",
+      "datasource": "Prometheus",
+      "targets": [{ "expr": "petorch_jobs_success_total" }],
+      "gridPos": { "x": 6, "y": 0, "w": 6, "h": 4 }
+    },
+    {
+      "type": "stat",
+      "title": "❌ Jobs Failed",
+      "datasource": "Prometheus",
+      "targets": [{ "expr": "petorch_jobs_failure_total" }],
+      "gridPos": { "x": 12, "y": 0, "w": 6, "h": 4 }
+    },
+    {
+      "type": "graph",
+      "title": "⏱ Job Duration",
+      "datasource": "Prometheus",
+      "targets": [{ "expr": "rate(petorch_job_duration_seconds_sum[1m]) / rate(petorch_job_duration_seconds_count[1m])" }],
+      "gridPos": { "x": 0, "y": 4, "w": 12, "h": 8 }
+    },
+    {
+      "type": "stat",
+      "title": "🌐 Total HTTP Requests",
+      "datasource": "Prometheus",
+      "targets": [{ "expr": "app_requests_total" }],
+      "gridPos": { "x": 12, "y": 4, "w": 6, "h": 4 }
+    }
+  ]
+}
