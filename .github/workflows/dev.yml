@@ -1,8 +1,5 @@
 name: CI/CD Pipeline
 
-env:
-  PYTHONPATH: ./docker/fastapi
-
 on:
   push:
     branches: [ main ]
@@ -27,9 +24,9 @@ jobs:
         pip install -r docker/fastapi/requirements.txt
 
     - name: Run tests
-      env:
-        PYTHONPATH: ./docker/fastapi
-      run: pytest
+    run: pytest
+    env:
+    PYTHONPATH: ./docker/fastapi
 
     - name: Lint (black)
       run: |
