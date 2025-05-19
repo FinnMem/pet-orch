@@ -1,5 +1,8 @@
 name: CI Build & Healthcheck
 
+env:
+  PYTHONPATH: ./docker/fastapi
+
 on:
   push:
     branches: [ "main" ]
