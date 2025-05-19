@@ -1,5 +1,6 @@
 fastapi
 uvicorn
-prometheus_client
-prometheus-fastapi-instrumentator
+prometheus-client
+httpx
 pytest
+black
