@@ -4,7 +4,12 @@ from prometheus_client import Counter, Histogram
 import time
 import random
 
+from app.api import routes  # импортируем твой router
+
 app = FastAPI()
+
+# Подключаем роутер с корневым маршрутом "/"
+app.include_router(routes.router)
 
 # Автоматическая инициализация базовых метрик FastAPI
 Instrumentator().instrument(app).expose(app)
@@ -14,10 +19,6 @@ JOBS_DISPATCHED = Counter("petorch_jobs_dispatched_total", "Total jobs dispatche
 JOBS_SUCCESS = Counter("petorch_jobs_success_total", "Total successful jobs")
 JOBS_FAILURE = Counter("petorch_jobs_failure_total", "Total failed jobs")
 JOB_DURATION = Histogram("petorch_job_duration_seconds", "Job processing duration")
-
-@app.get("/")
-def read_root():
-    return {"message": "Welcome to pet-orch!"}
 
 @app.get("/health")
 def health():
