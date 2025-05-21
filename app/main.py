@@ -17,7 +17,7 @@ JOB_DURATION = Histogram("petorch_job_duration_seconds", "Job processing duratio
 
 @app.get("/")
 def read_root():
-    return {"message": "Hello, DevOps!"}
+    return {"message": "Welcome to pet-orch!"}
 
 @app.get("/health")
 def health():
