@@ -6,3 +6,4 @@ aiogram
 requests
 pydantic
 black
+httpx
