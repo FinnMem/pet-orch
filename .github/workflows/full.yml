@@ -7,7 +7,7 @@ on:
     branches: [main, dev, staging]
 
 env:
-  PYTHONPATH: ./docker/fastapi
+  PYTHONPATH: ./app
 
 jobs:
   build-test:
