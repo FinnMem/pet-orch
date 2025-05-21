@@ -2,7 +2,7 @@ version: '3.9'
 
 services:
   web:
-    build: ./docker/fastapi
+    build: .
     ports:
       - "8000:8000"
     depends_on:
@@ -50,4 +50,3 @@ services:
 
 volumes:
   grafana-storage:
-    
