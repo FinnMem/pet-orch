@@ -1,6 +1,8 @@
+pytest
 fastapi
 uvicorn
 prometheus-fastapi-instrumentator
 aiogram
 requests
 pydantic
+black
