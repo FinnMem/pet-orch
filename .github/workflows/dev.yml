@@ -2,8 +2,9 @@ name: CI/CD Pipeline
 
 on:
   push:
-    branches: [ main ]
+    branches: [main, dev, staging]
   pull_request:
+    branches: [main, dev, staging]
 
 jobs:
   build-test-lint:
