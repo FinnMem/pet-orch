@@ -1,9 +1,12 @@
 pytest
 fastapi
 uvicorn
+prometheus_client
 prometheus-fastapi-instrumentator
 aiogram
 requests
 pydantic
 black
 httpx
+psycopg2-binary
+pydantic-settings

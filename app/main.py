@@ -1,28 +1,33 @@
+import time
+import random
 from fastapi import FastAPI
 from prometheus_fastapi_instrumentator import Instrumentator
 from prometheus_client import Counter, Histogram
-import time
-import random
 
-from app.api import routes  # импортируем твой router
+from app.api import routes  # Основные роуты
+from app.core.config import settings  # Централизованная конфигурация
 
 app = FastAPI()
 
-# Подключаем роутер с корневым маршрутом "/"
-app.include_router(routes.router)
-
-# Автоматическая инициализация базовых метрик FastAPI
+# Метрики Prometheus
 Instrumentator().instrument(app).expose(app)
 
-# Кастомные метрики
 JOBS_DISPATCHED = Counter("petorch_jobs_dispatched_total", "Total jobs dispatched")
 JOBS_SUCCESS = Counter("petorch_jobs_success_total", "Total successful jobs")
 JOBS_FAILURE = Counter("petorch_jobs_failure_total", "Total failed jobs")
 JOB_DURATION = Histogram("petorch_job_duration_seconds", "Job processing duration")
 
+# Подключаем маршруты
+app.include_router(routes.router)
+
 @app.get("/health")
 def health():
-    return {"status": "ok", "timestamp": time.time()}
+    return {
+        "status": "ok",
+        "timestamp": time.time(),
+        "redis_url": settings.redis_url,
+        "db_url": settings.database_url,
+    }
 
 @app.post("/run-job")
 def run_job():
