@@ -1,6 +1,5 @@
 from pydantic import BaseSettings, Field
 from typing import Optional
-import os
 from vault import load_vault_secrets
 
 class Settings(BaseSettings):
@@ -13,7 +12,7 @@ class Settings(BaseSettings):
         env_file = ".env"
         extra = "ignore"
 
-# Пробуем загрузить из Vault, если нет — fallback на .env
+# Сначала пробуем загрузить переменные из Vault, если он доступен
 try:
     vault_data = load_vault_secrets()
     settings = Settings(**vault_data)
